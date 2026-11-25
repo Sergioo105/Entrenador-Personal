@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+// hola caracola
 /**
  * Clase con métodos de utilidad para la entrada de datos por teclado y el manejo de días de la semana.
  */
