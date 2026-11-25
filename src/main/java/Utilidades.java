@@ -5,31 +5,80 @@ import java.util.Scanner;
  */
 public class Utilidades {
     public static String leerCadena(Scanner teclado, String s) {
-        // Muestra un mensaje y lee una cadena (línea completa) por teclado
-        return null; // @todo MODIFICAR PARA DEVOLVER LA CADENA LEÍDA
+        System.out.print(s);
+        s = teclado.nextLine();
+        return s;
     }
 
     public static int leerNumero(Scanner teclado, String mensaje, int minimo, int maximo) {
-        // Muestra un mensaje y lee un número por teclado (si no es un número o está fuera de rango, vuelve a
-        // solicitarlo)
-        return 0; // @todo MODIFICAR PARA DEVOLVER EL NÚMERO LEÍDO
+        int num;
+        do {
+            while (!teclado.hasNextInt()){
+                teclado.nextLine();
+                System.out.print(mensaje);
+            }
+            num = teclado.nextInt();
+
+        } while (num < minimo || num > maximo);
+
+        return num;
     }
 
     public static int leerDiaDeLaSemana(Scanner teclado, String mensaje) {
-        // Muestra un mensaje, lee un día de la semana por teclado (L, M, X, J, V, S, D) y devuelve su posición
-        // dentro de la semana (0-6). Si la entrada no es válida, vuelve a solicitarla
-        return 0; // @todo MODIFICAR PARA DEVOLVER EL DÍA DE LA SEMANA LEÍDO
+        System.out.print(mensaje);
+        String dia= teclado.next().toUpperCase();
+
+        while (!dia.equals("L") && !dia.equals("M") && !dia.equals("X") &&
+                !dia.equals("J") && !dia.equals("V") && !dia.equals("S") && !dia.equals("D")){
+            System.out.print(mensaje);
+            dia= teclado.next();
+        }
+        return diaSemanaAPosicion(dia);
     }
 
     public static int diaSemanaAPosicion(String dia) {
-        // Devuelve la posición de un día de la semana (L, M, X, J, V, S, D) dentro de la semana (0-6),
-        // o -1 si no es un día válido
-        return 0; // @todo MODIFICAR PARA DEVOLVER LA POSICIÓN DEL DÍA DE LA SEMANA
+        if(dia == null){
+            return -1;
+        }
+        dia = dia.toUpperCase();
+        switch (dia) {
+            case "L":
+                return 0;
+            case "M":
+                return 1;
+            case "X":
+                return 2;
+            case "J":
+                return 3;
+            case "V":
+                return 4;
+            case "S":
+                return 5;
+            case "D":
+                return 6;
+            default:
+                return -1;
+        }
     }
 
     public static String posicionADiaSemana(int pos) {
-        // Devuelve el día de la semana (Lunes, Martes, Miércoles, Jueves, Viernes, Sábado, Domingo)
-        // correspondiente a una posición dentro de la semana (0-6), o "Desconocido" si no es válida
-        return null; // @todo MODIFICAR PARA DEVOLVER EL DÍA DE LA SEMANA
+        switch (pos){
+            case 0:
+                return "Lunes";
+            case 1:
+                return "Martes";
+            case 2:
+                return "Miércoles";
+            case 3:
+                return "Jueves";
+            case 4:
+                return "Viernes";
+            case 5:
+                return "Sábado";
+            case 6:
+                return "Domingo";
+            default:
+                return "Desconocido";
+        }
     }
 }
